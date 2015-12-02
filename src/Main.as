@@ -1,6 +1,6 @@
 package
 {
-	import flash.display.Sprite;
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import screens.GameOverScreen;
 	import screens.GameScreen;
@@ -11,7 +11,7 @@ package
 	 * ...
 	 * @author Erwin Henraat
 	 */
-	public class Main extends Sprite 
+	public class Main extends MovieClip 
 	{
 		private var gameScreen:GameScreen
 		private var introScreen:IntroScreen;
@@ -27,7 +27,9 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point			
-			soundPlayer = new SoundPlayer(this);
+			soundPlayer = new SoundPlayer();
+			soundPlayer.initialize(this);
+			
 			buildIntroSreen();	
 		}
 		private function buildIntroSreen():void

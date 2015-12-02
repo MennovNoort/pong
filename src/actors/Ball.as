@@ -16,10 +16,7 @@ package actors
 		private var _movement:Point;
 		public static const OUTSIDE_RIGHT:String = "outside right";
 		public static const OUTSIDE_LEFT:String = "outside left";
-		public function set movement(m:Point):void
-		{
-			_movement = m;
-		}
+		
 		public function get xMove():Number
 		{
 			return _movement.x;			
@@ -27,6 +24,15 @@ package actors
 		public function set xMove(move:Number):void
 		{
 			_movement.x = move;
+			
+		}
+		public function get yMove():Number
+		{
+			return _movement.y;			
+		}
+		public function set yMove(move:Number):void
+		{
+			_movement.y = move;
 			
 		}
 		public function Ball() 
@@ -40,7 +46,7 @@ package actors
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addChild(new BallArt());
-			movement = new Point(0, 0);
+			_movement = new Point(0, 0);
 			this.addEventListener(Event.ENTER_FRAME, loop);
 		}
 		public function reset():void
@@ -64,7 +70,7 @@ package actors
 			this.x += _movement.x;
 			this.y += _movement.y;
 			
-			if (this.y <= 0 || this.y >= stage.stageHeight)
+			if (this.y < 0 || this.y > stage.stageHeight)
 			{
 				_movement.y *= -1;
 				
